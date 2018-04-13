@@ -1,0 +1,61 @@
+/* 覆盖mint-ui的primary颜色 */
+
+@import 'color';
+
+.mint-header {
+  background-color: $primaryColor;
+}
+
+.mint-button:not(.is-disabled):active::after {
+    opacity: .2 /* .6 */
+}
+
+.mint-button--primary {
+    background-color: $primaryColor;
+}
+
+.mint-button--primary.is-plain {
+    border: 1px solid $deeperPrimaryColor;
+    color: $primaryColor
+}
+
+.mint-badge.is-primary {
+  background-color: $primaryColor
+}
+
+.mint-switch-input:checked + .mint-switch-core {
+  border-color: $deeperPrimaryColor;
+  background-color: $primaryColor;
+}
+
+.mint-navbar .mint-tab-item.is-selected {
+  border-bottom: 3px solid $deeperPrimaryColor;
+  color: $primaryColor;
+}
+
+.mint-tabbar > .mint-tab-item.is-selected {
+  color: $primaryColor;
+}
+
+.mint-searchbar-cancel {
+  color: $primaryColor;
+}
+
+.mint-checkbox-input:checked + .mint-checkbox-core {
+  background-color: $primaryColor;
+  border-color: $deeperPrimaryColor;
+}
+
+.mint-radio-input:checked + .mint-radio-core {
+  background-color: $primaryColor;
+  border-color: $deeperPrimaryColor;
+}
+
+.mint-cell-wrapper {
+  background-image: none;
+  border: 1px solid $primaryBorderColor;
+}
+
+.mint-cell:last-child {
+  background-image: none;
+}

@@ -1,23 +1,32 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <top-bar :school="school"></top-bar>
+    <router-view @data="syncData"/>
+    <copy-right :links="links"></copy-right>
   </div>
 </template>
 
 <script>
+import TopBar from '@/components/common/TopBar'
+import CopyRight from '@/components/common/CopyRight'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    TopBar,
+    CopyRight
+  },
+  data () {
+    return {
+      school: '',
+      links: []
+    }
+  },
+  methods: {
+    syncData (data) {
+      this.school = data.school
+      this.links = data.links
+    }
+  }
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

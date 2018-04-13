@@ -1,0 +1,121 @@
+@import 'color';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  line-height: 24px;
+  background-color: #f1f1f4;
+}
+
+[v-cloak] { display: none }
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content:  " ";
+  clear: both;
+  height: 0;
+}
+
+.dotdotdot {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.border {
+	border: 1px solid $primaryBorderColor;
+}
+.border-top {
+	border-top: 1px solid $primaryBorderColor;
+}
+.border-bottom {
+	border-bottom: 1px solid $primaryBorderColor;
+}
+.border-left {
+	border-left: 1px solid $primaryBorderColor;
+}
+.border-right {
+	border-right: 1px solid $primaryBorderColor;
+}
+
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
+}
+
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+
+.white-space {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.row {
+	border-bottom: 1px solid $primaryBorderColor;
+  &:before, &:after {
+    display: table;
+    line-height: 0;
+    content: "";
+  }
+  &:after {
+    clear: both;
+  }
+  [class*="col"] {
+    display: block;
+    float: left;
+    min-height: 1px;
+    box-sizing: border-box;
+  }
+}
+.col-dot-5 {
+  width: 6.25%;
+}
+.col-1 {
+  width: 12.5%;
+}
+.col-1-dot-5 {
+  width: 18.75%;
+}
+.col-2 {
+  width: 25.0%;
+}
+.col-2-dot-5 {
+  width: 31.25%;
+}
+.col-3 {
+  width: 37.5%;
+}
+.col-4 {
+  width: 50.0%;
+}
+.col-5 {
+  width: 62.5%;
+}
+.col-6 {
+  width: 75.0%;
+}
+.col-7 {
+  width: 87.5%;
+}
+.col-8 {
+  width: 100.0%;
+}
