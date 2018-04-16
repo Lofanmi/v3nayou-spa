@@ -3,6 +3,7 @@ import { Button, Header, Swipe, SwipeItem, Spinner, Field } from 'mint-ui'
 import VueAnalytics from 'vue-analytics'
 import App from './App'
 import router from './router'
+import axios from 'axios'
 import './assets/scss/framework.scss'
 import './assets/scss/nayou.scss'
 
@@ -19,6 +20,9 @@ Vue.use(VueAnalytics, {
 })
 
 Vue.config.productionTip = false
+
+// axios.defaults.baseURL = 'http://127.0.0.1:5666'
+axios.defaults.baseURL = '/api'
 
 /* eslint-disable no-new */
 new Vue({
