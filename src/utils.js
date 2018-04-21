@@ -56,10 +56,12 @@ export const clickAnalytics = (vm, category, name, location) => {
     // 跳转
     if (link === '[empty]') {
       Toast({
-        message: '新功能很快跟大家见面啦~',
+        message: '新功能抓紧研发中^_^',
         duration: 3000
       })
-    } else if (link) {
+    } else if (link.indexOf('http') === 0) {
+      window.location.href = link
+    } else {
       vm.$router.push(location)
     }
   }
