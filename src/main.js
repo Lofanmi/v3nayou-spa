@@ -21,8 +21,9 @@ Vue.use(VueAnalytics, {
 
 Vue.config.productionTip = false
 
-// axios.defaults.baseURL = 'http://127.0.0.1:5666'
 axios.defaults.baseURL = '/api'
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 
 /* eslint-disable no-new */
 new Vue({
