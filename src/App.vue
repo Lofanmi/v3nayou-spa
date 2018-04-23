@@ -9,7 +9,6 @@
 <script>
 import TopBar from '@/components/common/TopBar'
 import CopyRight from '@/components/common/CopyRight'
-import axios from 'axios'
 
 export default {
   name: 'App',
@@ -22,10 +21,6 @@ export default {
       school: '',
       links: []
     }
-  },
-  async created () {
-    const r = await axios('/start')
-    console.log(r)
   },
   methods: {
     syncData (data) {
