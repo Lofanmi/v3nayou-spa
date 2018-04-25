@@ -41,6 +41,16 @@
   color: $primaryColor;
 }
 
+.mint-cell-value {
+  input {
+    background-color: #fff;
+    color: $primaryTextColor;
+    &:disabled {
+      color: $descTextColor;
+    }
+  }
+}
+
 .mint-checkbox-input:checked + .mint-checkbox-core {
   background-color: $primaryColor;
   border-color: $deeperPrimaryColor;
