@@ -7,6 +7,10 @@ const home = r => require.ensure([], () => r(require('@/components/pages/Home.vu
 const ucenter = r => require.ensure([], () => r(require('@/components/pages/UCenter.vue')), 'ucenter')
 const schedule = r => require.ensure([], () => r(require('@/components/pages/Schedule.vue')), 'schedule')
 const score = r => require.ensure([], () => r(require('@/components/pages/Score.vue')), 'score')
+const teacher = r => require.ensure([], () => r(require('@/components/pages/Teacher.vue')), 'teacher')
+const error = r => require.ensure([], () => r(require('@/components/pages/Error.vue')), 'error')
+const dev = r => require.ensure([], () => r(require('@/components/pages/Dev.vue')), 'dev')
+const bug = r => require.ensure([], () => r(require('@/components/pages/Bug.vue')), 'bug')
 
 export default new Router({
   routes: [
@@ -29,6 +33,26 @@ export default new Router({
       path: '/score',
       name: 'score',
       component: score
+    },
+    {
+      path: '/teacher',
+      name: 'teacher',
+      component: teacher
+    },
+    {
+      path: '/error/:message',
+      name: 'error',
+      component: error
+    },
+    {
+      path: '/dev',
+      name: 'dev',
+      component: dev
+    },
+    {
+      path: '/bug',
+      name: 'bug',
+      component: bug
     }
   ]
 })

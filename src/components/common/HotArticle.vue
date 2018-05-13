@@ -1,11 +1,11 @@
 <template>
-  <section v-if="articles.length>0" class="hot-articles border-bottom">
+  <section v-if="list.length>0" class="hot-articles border-bottom">
     <div class="icon-bar border-bottom">
       <img src="../../assets/images/icon_hot.png">热门文章
     </div>
     <div class="items">
       <div
-        v-for="item in articles"
+        v-for="item in list"
         :key="item.id"
         @click="onClick(item)"
         class="hot-article border-bottom"
@@ -22,11 +22,23 @@
 </template>
 
 <script>
-import {clickAnalytics} from '@/utils'
+import { clickAnalytics } from '@/utils'
 
 export default {
   props: {
     articles: Array
+  },
+  computed: {
+    list () {
+      return this.articles.map(o => ({
+        id: o.id,
+        title: o.title,
+        abstract: o.abstract,
+        cover: `http://m.nayou.finded.net${o.cover}`,
+        link: o.url,
+        date: o.date
+      }))
+    }
   },
   methods: {
     onClick (item) {

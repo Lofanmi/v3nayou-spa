@@ -10,7 +10,7 @@
 
 <script>
 import { Header } from 'mint-ui'
-import {clickAnalytics} from '@/utils'
+import { clickAnalytics } from '@/utils'
 
 export default {
   props: {
@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     onClick () {
-      clickAnalytics(this, 'LOGO', '哪有', {name: 'ucenter'})
+      clickAnalytics(this, 'LOGO', '哪有', {name: 'home'})
     }
   }
 }

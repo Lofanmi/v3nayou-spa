@@ -1,6 +1,7 @@
 'use strict'
 
 import { Toast } from 'mint-ui'
+import Cookies from 'js-cookie'
 
 /**
  * 从localStorage获取对象.
@@ -35,7 +36,14 @@ export const setLocalObject = (key, obj) => {
  * @param  {String/Object}  location  链接
  */
 export const clickAnalytics = (vm, category, name, location) => {
-  const action = 'click'
+  const cookie = Cookies.get('school')
+  let school = cookie || ''
+  if (school === 'gzhu') {
+    school = '广大'
+  } else if (school === 'sysu') {
+    school = '中大'
+  }
+  const action = school
   const link = typeof (location) === 'object' ? location.name : location
   try {
     // 事件统计
@@ -60,7 +68,14 @@ export const clickAnalytics = (vm, category, name, location) => {
         duration: 3000
       })
     } else if (link.indexOf('http') === 0) {
-      window.location.href = link
+      Toast({
+        message: '页面跳转中...',
+        duration: 3000
+      })
+      // 等待 500ms 确保统计请求发出去了
+      setTimeout(() => {
+        window.location.href = link
+      }, 500)
     } else {
       vm.$router.push(location)
     }

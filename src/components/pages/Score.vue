@@ -17,13 +17,13 @@
       <spinner v-if="loading" class="loading" type="fading-circle"></spinner>
       <!--按钮组-->
       <template v-else>
-        <mt-button @click="onQuery()" type="primary" size="small" class="query major" >主修</mt-button>
-        <mt-button @click="onQuery()" type="primary" size="small" class="query second">辅修</mt-button>
+        <mt-button @click="onQuery('major')"  type="primary" size="small" class="query major" >主修</mt-button>
+        <mt-button @click="onQuery('second')" type="primary" size="small" class="query second">辅修</mt-button>
       </template>
     </div>
     <div class="main">
       <div class="gpa">
-        <div class="text" @click="onGPADetail()">{{GPA}}</div>
+        <div class="text">{{GPA}}</div>
         <div class="btext">
           <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;本学期GPA&nbsp;<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         </div>
@@ -31,12 +31,12 @@
       </div>
       <div class="detail">
         <table>
-          <thead><tr><th>课程名称</th><th></th><th>分数</th></tr></thead>
+          <thead><tr><th>课程名称</th><th class="failed"></th><th class="score text-center">分数</th></tr></thead>
           <tbody>
             <tr v-for="item in data.list" :key="item.name" @click="onShowDetail(item)">
               <td>{{item.name}}</td>
               <td><span v-if="item.score < 60" class="gui"></span></td>
-              <td>{{item.score}}</td>
+              <td class="text-center">{{item.score}}</td>
             </tr>
           </tbody>
         </table>
@@ -46,10 +46,10 @@
     <div v-if="detailItem" @click="onCloseDetailWidget()" class="shade">
       <div class="score-widget">
         <div class="row"
-          v-for="value in detailItem"
-          v-if="maps[$key]"
-          :key="value">
-          <div class="col-4">{{maps[$key]}}</div>
+          v-for="(value, key) in detailItem"
+          v-if="maps[key]"
+          :key="key + value">
+          <div class="col-4">{{maps[key]}}</div>
           <div class="col-4">{{value}}</div>
         </div>
       </div>
@@ -58,8 +58,9 @@
 </template>
 
 <script>
-import { Spinner, Button } from 'mint-ui'
-import {calcGPA, GPAtext} from '@/utils'
+import axios from 'axios'
+import { Spinner, Button, Toast } from 'mint-ui'
+import { getLocalObject, setLocalObject, calcGPA, GPAtext } from '@/utils'
 
 export default {
   components: {
@@ -73,23 +74,35 @@ export default {
       xntexts: ['大一', '大二', '大三', '大四', '大五', '全部'],
       xqtexts: ['上学期', '下学期', '整学年'],
       form: {
-        xn: '2015-2016',
+        xn: '2016-2017',
         xq: '2'
       },
       data: {
+        xns: [],
+        xqs: [],
         type: '',
-        xn: '2015-2016',
-        xq: '2',
-        xns: ['2015-2016', '2016-2017', '2017-2018', '2018-2019', '2020-2021', 'all'],
-        xqs: ['1', '2', 'all'],
         list: []
       },
       selectingXn: false,
       selectingXq: false,
       detailItem: null,
-      xntext: '大一',
-      xqtext: '下学期'
+      xntext: '(学年)',
+      xqtext: '(学期)'
     }
+  },
+  async created () {
+    const data = await this.getFromLocalStorage()
+    if (!data) {
+      await this.onQuery('major')
+      return
+    }
+    this.data.xns = data.xns
+    this.data.xqs = data.xqs
+    this.data.type = data.type
+    this.data.list = data.list
+
+    this.onSelectXn(data.xns.indexOf(data.xn))
+    this.onSelectXq(data.xqs.indexOf(data.xq))
   },
   computed: {
     GPA () {
@@ -100,6 +113,33 @@ export default {
     }
   },
   methods: {
+    async getFromLocalStorage () {
+      return getLocalObject('score')
+    },
+    async onQuery (type) {
+      this.loading = true
+      try {
+        const r = await axios(`/score/${type}/${this.form.xn}/${this.form.xq}`)
+        if (r.data.code !== 200) {
+          return Toast(r.data.message)
+        }
+        const data = r.data.data
+
+        setLocalObject('score', data)
+
+        this.data.xns = data.xns
+        this.data.xqs = data.xqs
+        this.data.type = data.type
+        this.data.list = data.list
+
+        this.onSelectXn(data.xns.indexOf(data.xn))
+        this.onSelectXq(data.xqs.indexOf(data.xq))
+
+        Toast(r.data.message)
+      } finally {
+        this.loading = false
+      }
+    },
     onSelectingXn: function () {
       this.selectingXn = true
     },
@@ -121,15 +161,6 @@ export default {
     },
     onCloseDetailWidget: function () {
       this.detailItem = null
-    },
-    onGPADetail: function () {
-      // this.detailGPA = true
-    },
-    onQuery: function () {
-      this.loading = true
-      setTimeout(() => {
-        this.loading = false
-      }, 2000)
     }
   }
 }
@@ -186,9 +217,9 @@ export default {
     .query {
       position: absolute;
       z-index: 1;
-      top: 7px;
-      height: 36px;
-      line-height: 36px;
+      top: 9px;
+      height: 32px;
+      line-height: 32px;
       &.major {
         right: 62px;
         border-top-right-radius: 0;
@@ -294,6 +325,12 @@ export default {
           font-size: 15px;
           color: $primaryTextColor;
           font-weight: bold;
+          &.failed {
+            width: 40px;
+          }
+          &.score {
+            width: 60px;
+          }
         }
         td {
           border-bottom: 1px solid #e3e9ea;
@@ -339,14 +376,13 @@ export default {
     font-size: 16px;
     z-index: 200;
     .score-widget {
-      display: block;
-      width: 400px;
+      width: 80%;
       background-color: #fff;
       border-radius: 4px;
       overflow: auto;
       color: $primaryTextColor;
-      padding: 20px;
-      max-height: 40%;
+      padding: 15px;
+      max-height: 60%;
       line-height: 40px;
       margin: 60px auto 0;
       .row:last-child {

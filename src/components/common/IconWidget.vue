@@ -1,34 +1,37 @@
 <template>
   <section class="icon-widget">
     <!--main-icons-->
-    <section class="icons main-icons border-bottom">
+    <section class="icons main-icons">
       <div v-for="item in mainlyIcons"
         :key="item.name"
+        :data-link="item.link"
         @click="onClick(item)"
         class="icon"
         >
-        <img src="../../assets/images/icons/score.png">
-        <div class="name">成绩</div>
+        <img :src="item.icon">
+        <div class="name">{{item.name}}</div>
       </div>
     </section>
-    <!--bottom-icons-->
-    <section class="icons bottom-icons border-bottom">
-      <template v-for="item in bottomIcons"
+    <!--others-icons-->
+    <section class="icons others-icons">
+      <template v-for="item in othersIcons"
         class="icon"
         >
         <div
           :key="item.name"
+          :data-link="item.link"
           @click="onClick(item)"
           class="icon"
           >
-          <img src="../../assets/images/icons/score.png">
+          <img :src="item.icon">
         </div>
         <div
           :key="item.id"
+          :data-link="item.link"
           @click="onClick(item)"
           class="icon"
           >
-          <div class="name">公选排行榜</div>
+          <div class="name">{{item.name}}</div>
         </div>
       </template>
     </section>
@@ -36,12 +39,12 @@
 </template>
 
 <script>
-import {clickAnalytics} from '@/utils'
+import { clickAnalytics } from '@/utils'
 
 export default {
   props: {
     mainlyIcons: Array,
-    bottomIcons: Array
+    othersIcons: Array
   },
   methods: {
     onClick (item) {
@@ -52,19 +55,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import '../../assets/scss/color.scss';
   .icon-widget {
     background-color: #fff;
     .icons {
       display: flex;
       flex-wrap: wrap;
       width: 100%;
-      padding: 10px 0;
       font-size: 13px;
       line-height: 0;
       .icon {
         width: 25%;
         text-align: center;
         color: #333;
+        padding: 10px 0 5px;
         img {
           width: 48px;
           height: 48px;
@@ -72,19 +76,23 @@ export default {
       }
     }
     .main-icons {
-      padding-bottom: 0;
+      padding: 0;
+      .icon {
+        border-right: 1px solid $primaryBorderColor;
+        border-bottom: 1px solid $primaryBorderColor;
+      }
       .name {
         line-height: 24px;
-        height: 34px;
+        height: 24px;
       }
     }
-    .bottom-icons {
+    .others-icons {
       .name {
         line-height: 48px;
         text-align: left;
       }
       .icon:nth-child(2) {
-        border-right: 1px solid #eee;
+        border-right: 1px solid $primaryBorderColor;
       }
     }
   }

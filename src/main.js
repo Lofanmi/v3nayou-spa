@@ -15,7 +15,7 @@ Vue.component(Spinner.name, Spinner)
 Vue.component(Field.name, Field)
 
 Vue.use(VueAnalytics, {
-  id: 'UA-XXX-X',
+  id: 'UA-119129701-1',
   router
 })
 

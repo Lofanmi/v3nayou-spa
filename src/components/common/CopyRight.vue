@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import {clickAnalytics} from '@/utils'
+import { clickAnalytics } from '@/utils'
 
 export default {
   props: {
