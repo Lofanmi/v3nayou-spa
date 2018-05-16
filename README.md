@@ -1,30 +1,34 @@
 # v3nayou-spa
 
-> A Vue.js project
+微信哪有服务号, 做最好用的校园服务平台!
 
-## Build Setup
+广州大学与中山大学的工具类应用, 支持广州大学教务成绩课表, 校历, 图书, 实时公交, 四六级, 公选课查询.
 
-``` bash
-# install dependencies
-npm install
+欢迎添砖加瓦~ 本项目为公众号自定义菜单的Go后端接口, 具体实现包含`首屏界面`, `微信授权`和`教务系统`.
 
-# serve with hot reload at localhost:8080
+对应的后端项目(Go): [https://github.com/Lofanmi/v3nayou](https://github.com/Lofanmi/v3nayou)
+
+## Requirements
+
+- Node 6+
+- Nginx
+
+## Deploy
+
+```bash
+# 克隆前端项目到本地
+cd /home/wwwroot/
+git clone https://github.com/Lofanmi/v3nayou-spa.git
+# 安装依赖
+npm i
+# 开发模式
 npm run dev
-
-# build for production with minification
+# 项目构建
 npm run build
-
-# build for production and view the bundle analyzer report
+# 构建项目并查看包的使用报告
 npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## License
+
+Apache-2.0
