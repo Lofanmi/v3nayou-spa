@@ -29,6 +29,7 @@ export default {
   },
   created () {
     const o = Cookies.get('o')
+    console.log(o)
 
     const typeNumber = 5
     const errorCorrectLevel = 'L'
@@ -40,6 +41,8 @@ export default {
 
     const base64 = qr.createImgBase64(typeNumber, margin)
     const dataURL = 'data:image/gif;base64,' + base64
+
+    console.log(dataURL)
 
     this.qrcode = dataURL
   },

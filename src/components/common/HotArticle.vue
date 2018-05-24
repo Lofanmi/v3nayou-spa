@@ -30,14 +30,7 @@ export default {
   },
   computed: {
     list () {
-      return this.articles.map(o => ({
-        id: o.id,
-        title: o.title,
-        abstract: o.abstract,
-        cover: `http://m.nayou.finded.net${o.cover}`,
-        link: o.url,
-        date: o.date
-      }))
+      return this.articles
     }
   },
   methods: {
