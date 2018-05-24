@@ -30,8 +30,8 @@ export default {
   created () {
     const o = Cookies.get('o')
 
-    const typeNumber = 0
-    const errorCorrectLevel = 'L'
+    const typeNumber = 10
+    const errorCorrectLevel = 'M'
     const margin = 10
 
     const qr = qrcode(typeNumber, errorCorrectLevel)
