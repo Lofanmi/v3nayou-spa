@@ -36,12 +36,18 @@ export default {
     }
     .school {
       font-size: 12px;
-      line-height: 40px;
+      line-height: 54px;
       .position {
         width: 16px;
         height: 18px;
         vertical-align: middle;
       }
     }
+  }
+</style>
+
+<style>
+  .mint-header {
+    height: 54px;
   }
 </style>
