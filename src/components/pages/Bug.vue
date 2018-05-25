@@ -7,13 +7,11 @@
       <p>2. 哪有图书有时候会因为访问不到学校图书馆而查不了图书, 可以等一阵子再搜~</p>
       <p>3. 等我想到了再告诉你~</p><br>
       <p><span class="u">如何反馈:</span></p>
-      <p>如果发现哪有不能正常使用, 可以直接截图<span class="u">微博私信</span>我, 也可以在<span class="u">后台留言</span>反馈.</p>
+      <p>如果发现哪有不能正常使用, 可以直接截图到<span class="u">后台留言</span>反馈.</p>
       <p>错误反馈需要包括以下内容:</p>
       <p>1. <span class="u">下方二维码</span></p>
       <p>2. <span class="u">错误文字描述</span>(最好附带错误截图)</p>
       <img class="qrcode" :src="qrcode"><br>
-      <p><span class="u">新浪微博:</span></p>
-      <img class="qrcode" src="/static/qrcode.jpg"><br>
     </div>
   </section>
 </template>

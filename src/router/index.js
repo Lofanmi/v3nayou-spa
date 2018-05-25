@@ -9,7 +9,6 @@ const schedule = r => require.ensure([], () => r(require('@/components/pages/Sch
 const score = r => require.ensure([], () => r(require('@/components/pages/Score.vue')), 'score')
 const teacher = r => require.ensure([], () => r(require('@/components/pages/Teacher.vue')), 'teacher')
 const error = r => require.ensure([], () => r(require('@/components/pages/Error.vue')), 'error')
-const dev = r => require.ensure([], () => r(require('@/components/pages/Dev.vue')), 'dev')
 const bug = r => require.ensure([], () => r(require('@/components/pages/Bug.vue')), 'bug')
 
 export default new Router({
@@ -43,11 +42,6 @@ export default new Router({
       path: '/error/:message',
       name: 'error',
       component: error
-    },
-    {
-      path: '/dev',
-      name: 'dev',
-      component: dev
     },
     {
       path: '/bug',
