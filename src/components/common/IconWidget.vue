@@ -13,7 +13,7 @@
       </div>
     </section>
     <!--others-icons-->
-    <section class="icons others-icons">
+    <section class="icons others-icons border-top border-bottom">
       <template v-for="item in othersIcons"
         class="icon"
         >
@@ -65,22 +65,19 @@ export default {
       font-size: 13px;
       line-height: 0;
       .icon {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         width: 25%;
         text-align: center;
         color: #333;
         padding: 10px 0 5px;
         img {
-          width: 48px;
-          height: 48px;
+          width: 40px;
+          height: 40px;
         }
       }
     }
     .main-icons {
       padding: 0;
-      .icon {
-        border-right: 1px solid $primaryBorderColor;
-        border-bottom: 1px solid $primaryBorderColor;
-      }
       .name {
         line-height: 24px;
         height: 24px;
@@ -88,7 +85,7 @@ export default {
     }
     .others-icons {
       .name {
-        line-height: 48px;
+        line-height: 36px;
         text-align: left;
       }
       .icon:nth-child(2) {

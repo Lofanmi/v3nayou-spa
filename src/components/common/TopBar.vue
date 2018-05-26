@@ -36,7 +36,7 @@ export default {
     }
     .school {
       font-size: 14px;
-      line-height: 54px;
+      line-height: 40px;
       .position {
         width: 16px;
         height: 18px;
@@ -46,8 +46,3 @@ export default {
   }
 </style>
 
-<style>
-  .mint-header {
-    height: 54px;
-  }
-</style>

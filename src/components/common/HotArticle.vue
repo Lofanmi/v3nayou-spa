@@ -1,5 +1,5 @@
 <template>
-  <section v-if="list.length>0" class="hot-articles border-bottom">
+  <section v-if="list.length>0" class="hot-articles border-top border-bottom">
     <div class="icon-bar border-bottom">
       <img src="../../assets/images/icon_hot.png">热门文章
     </div>
