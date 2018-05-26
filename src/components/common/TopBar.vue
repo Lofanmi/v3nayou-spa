@@ -30,12 +30,12 @@ export default {
 <style lang="scss" scoped>
   header {
     .logo {
-      height: 28px;
-      width: 49px;
+      height: 24px;
+      width: 42px;
       vertical-align: middle;
     }
     .school {
-      font-size: 14px;
+      font-size: 13px;
       line-height: 40px;
       .position {
         width: 16px;
